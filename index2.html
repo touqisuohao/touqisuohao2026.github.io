@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 增强移动端适配：确保响应式视口，同时保留原始属性并添加更多移动端优化 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>投其所好 · 大闸蟹智慧监测水下机器人 | 2026中国大学生计算机设计大赛</title>
+    <!-- 引入Google Fonts提升现代感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (免费图标库) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f7f5;
+            color: #1a2e2c;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            /* 移动端优化：防止文本缩放时布局抖动 */
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* 渐变主色调：深水科技蓝绿+蟹黄色点缀 */
+        :root {
+            --primary-dark: #0A2F2A;
+            --primary-teal: #1A6F66;
+            --primary-aqua: #2F9F94;
+            --highlight-gold: #E6B422;
+            --light-bg: #EFFAF8;
+            --gray-light: #E2EDEA;
+            --text-dark: #1C2F2C;
+            --text-soft: #3B5C57;
+            --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* 头部导航区 - 移动端适配增强 */
+        .navbar {
+            background: rgba(10, 47, 42, 0.92);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.8rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo h1 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #FFFFFF, #C7F2EC);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .logo span {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--highlight-gold);
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #EFFAF8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: clamp(0.85rem, 3vw, 1.1rem);
+            white-space: nowrap;
+        }
+        
+        /* 移动端导航稍微压缩间距 */
+        @media (max-width: 680px) {
+            .nav-links a {
+                white-space: normal;
+                font-size: 0.75rem;
+            }
+            .nav-links {
+                gap: 0.5rem;
+            }
+            .btn-outline-light {
+                padding: 0.2rem 0.8rem;
+            }
+        }
+
+        /* 按钮样式 */
+        .btn-outline-light {
+            border: 1.5px solid var(--highlight-gold);
+            background: transparent;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            color: var(--highlight-gold);
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-outline-light:hover {
+            background: var(--highlight-gold);
+            color: #0A2F2A;
+        }
+
+        /* Hero区域 - 移动优先 */
+        .hero {
+            background: linear-gradient(105deg, #EFFAF8 0%, #D9F0EC 100%);
+            padding: 3rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-text {
+            flex: 1.2;
+            min-width: 240px;
+        }
+
+        .hero-badge {
+            background: rgba(230, 180, 34, 0.18);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #B47C00;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(130deg, #0A2F2A, #1A6F66);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
+            color: var(--text-soft);
+            max-width: 95%;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .stat-item h3 {
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .hero-image {
+            flex: 1;
+            background: rgba(47, 159, 148, 0.1);
+            border-radius: 48px;
+            padding: 1rem;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(2px);
+            text-align: center;
+        }
+
+        .placeholder-img {
+            background: #C2E3DE;
+            border-radius: 32px;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #0A2F2A;
+            font-weight: 500;
+            gap: 12px;
+            overflow: hidden;
+        }
+
+        .placeholder-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 28px;
+            object-fit: cover;
+        }
+
+        .placeholder-img i {
+            font-size: 4rem;
+            opacity: 0.7;
+        }
+
+        /* 通用section */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            position: relative;
+            width: 100%;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: var(--highlight-gold);
+            margin: 0.8rem auto 0;
+            border-radius: 4px;
+        }
+
+        /* 卡片网格 - 移动自适应 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .tech-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(26, 111, 102, 0.15);
+            height: 100%;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-aqua);
+        }
+
+        .tech-icon {
+            font-size: 2.2rem;
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+        }
+
+        .tech-card h3 {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            margin-bottom: 0.8rem;
+        }
+
+        .highlight-number {
+            font-weight: 800;
+            color: var(--highlight-gold);
+            font-size: 1.1rem;
+        }
+
+        /* 场景区域 */
+        .scene-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .scene-item {
+            background: #FFFFFFE6;
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 1rem 1.2rem;
+            flex: 1 1 180px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #CDE7E2;
+            font-size: 0.9rem;
+        }
+
+        /* 落地案例 */
+        .case-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            width: 260px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s;
+        }
+        .case-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* 产品图片展示 (模拟图片区) */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .gallery-card {
+            background: #F8FCFB;
+            border-radius: 32px;
+            padding: 1rem;
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #BCE0DA;
+        }
+
+        .mock-img {
+            background: linear-gradient(145deg, #D9F0EC, #B2DDD5);
+            border-radius: 24px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #1A6F66;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+        .mock-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            display: block;
+        }
+
+        /* 团队&联系 - 移动响应 */
+        .team-contact {
+            background: #0A2F2A;
+            color: white;
+            border-radius: 48px 48px 0 0;
+            margin-top: 2rem;
+        }
+
+        .contact-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .contact-flex > div {
+            flex: 1;
+            min-width: 220px;
+        }
+        .contact-info p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: 500;
+            margin: 0.5rem 0;
+            word-break: break-word;
+        }
+
+        .contact-icon {
+            font-size: 1.3rem;
+            margin-right: 0.6rem;
+            vertical-align: middle;
+            color: var(--highlight-gold);
+        }
+
+        footer {
+            background: #06221E;
+            color: #9BC5BF;
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* 移动端全面优化：重新定义内边距，图片自适应，避免横向滚动条 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            section {
+                padding: 3rem 0;
+            }
+            .hero {
+                padding: 2rem 0 3rem;
+            }
+            .hero-text p {
+                max-width: 100%;
+            }
+            .card-grid {
+                gap: 1.2rem;
+            }
+            .tech-card {
+                padding: 1.2rem;
+            }
+            .scene-item {
+                flex-basis: 140px;
+                font-size: 0.85rem;
+                padding: 0.7rem 1rem;
+            }
+            .case-card {
+                width: 100%;
+                max-width: 280px;
+            }
+            .hero-stats {
+                justify-content: space-between;
+            }
+            .stat-item {
+                text-align: center;
+                flex: 1;
+            }
+            .contact-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+            .contact-info {
+                text-align: left;
+                width: 100%;
+            }
+            .logo h1 {
+                font-size: 1.4rem;
+            }
+            .logo span {
+                font-size: 0.65rem;
+            }
+        }
+
+        /* 针对小屏幕超紧凑调整 */
+        @media (max-width: 480px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            .hero-stats {
+                gap: 0.8rem;
+            }
+            .section-title {
+                margin-bottom: 1.8rem;
+            }
+            .placeholder-img {
+                min-height: 180px;
+            }
+        }
+
+        /* 确保图片不会溢出，且保持比例 */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 其他辅助类 */
+        .tech-card p, .case-card p {
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<div class="navbar">
+    <div class="container nav-container">
+        <div class="logo">
+            <h1>投其所好<span>2026中国大学生计算机设计大赛</span></h1>
+        </div>
+        <div class="nav-links">
+            <a href="#product">产品体系</a>
+            <a href="#tech">核心技术</a>
+            <a href="#scenes">应用场景</a>
+            <a href="#gallery">产品设计图</a>
+            <a href="#team" class="btn-outline-light">联系团队</a>
+        </div>
+    </div>
+</div>
+
+<!-- Hero 主视觉 -->
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-text">
+            <div class="hero-badge"><i class="fas fa-robot"></i> 大闸蟹智慧监测水下机器人 </div>
+            <h1>大闸蟹智慧监测<br>水下机器人系统</h1>
+            <p>搭建“无人机自动投饵机 — 水面母舰 — 水下潜艇” 三级立体组网<br>打造“感知-决策-执行”全链条闭环，让每一只蟹都精准可溯</p>
+            <div class="hero-stats">
+                <div class="stat-item"><h3>≥97%</h3><span>识别精度</span></div>
+                <div class="stat-item"><h3>＜3%</h3><span>冷浊水故障率</span></div>
+                <div class="stat-item"><h3>24h</h3><span>病害预警</span></div>
+                <div class="stat-item"><h3>厘米级</h3><span>水下建图</span></div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="placeholder-img" style="padding:0; overflow:hidden;">
+                <img src="images/image000.png" alt="水下机器人·立体组网示意图" style="width:100%; height:100%; object-fit:cover; border-radius:28px;">
+                <div style="font-size:1rem; padding: 10px 0;">AI 智慧蟹塘 | 实时监测</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 产品简要介绍 + 三级组网 -->
+<section id="product">
+    <div class="container">
+        <div class="section-title">三级立体组网 · 全链闭环</div>
+        <div style="max-width: 900px; margin: 0 auto 2.5rem auto; text-align: center; font-size: clamp(0.95rem, 4vw, 1.1rem); background: #FFFFFFB3; padding: 1.8rem; border-radius: 48px;">
+            <p style="margin-bottom: 1rem;">🌟 <strong>国内首个大闸蟹智慧监测水下机器人</strong> — 搭建“<strong>无人机自动投饵机 - 水面母舰 - 水下潜艇</strong>”三级立体组网，通过水下机器人+AI算法+云平台，打造“感知——决策——执行”全链条闭环，实现从数据采集、分析到精准执行的全流程闭环管理。</p>
+            <p><i class="fas fa-chart-line" style="color: #1A6F66;"></i> 阳澄湖、新疆冰川雪水、沙漠边缘养殖塘全面验证</p>
+        </div>
+        <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="tech-card"><i class="fas fa-drone tech-icon"></i><h3>无人机投饵机</h3><p>精准投喂，配合水下数据动态调整投喂策略，降低饵料浪费20%以上。</p></div>
+            <div class="tech-card"><i class="fas fa-ship tech-icon"></i><h3>水面母舰</h3><p>能源补给 + 数据中继，指挥水下集群作业，实现多艇协同巡检。</p></div>
+            <div class="tech-card"><i class="fas fa-water tech-icon"></i><h3>水下潜艇</h3><p>暗光成像+多传感器融合，浑浊冷水域采集完整率≥99%。</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- 核心技术区域 -->
+<section id="tech" style="background: var(--light-bg);">
+    <div class="container">
+        <div class="section-title">硬核科技 · 智慧感知</div>
+        <div class="card-grid">
+            <div class="tech-card">
+                <i class="fas fa-camera tech-icon"></i>
+                <h3>暗光成像与多源融合</h3>
+                <p>采用CLAHE算法暗光成像，浑浊水体可捕捉清晰视频流；多源数据实时同步校正，数据采集完整率 <span class="highlight-number">≥99%</span>。<br>全方位感知水体化学/物理信息，历经<span class="highlight-number">12轮冷浊水测试</span>，故障率＜3%。</p>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-brain tech-icon"></i>
+                <h3>高精度蟹群识别+病害预测</h3>
+                <p>基于 <strong>YOLO v8-Swin Transformer</strong> 实现大闸蟹识别，搭配 <strong>LSTM</strong> 进行病害预测。<br>水草遮挡环境下识别精度达<span class="highlight-number">97%</span>，异常行为<span class="highlight-number">提前24小时预警</span>，全生命周期覆盖数据库。</p>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-map-marked-alt tech-icon"></i>
+                <h3>水下空间建图与定位</h3>
+                <p>采用 <strong>ORB-SLAM3</strong> 水下建图定位，<strong>BoT-SORT</strong> 多目标跟踪计数，建图精度<span class="highlight-number">厘米级</span>，个体识别精确率<span class="highlight-number">97%</span>。<br>完成跟踪关键帧提取、局部地图构建、闭环修正、全局地图生成全流程。</p>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-file-alt tech-icon"></i>
+                <h3>知识产权厚积薄发</h3>
+                <p>蟹类养殖相关专利 <span class="highlight-number">10+项</span>，发表学术论文 <span class="highlight-number">40余篇</span>，专利第一发明人均为核心成员，构筑高技术壁垒。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 应用场景 & 落地案例 -->
+<section id="scenes">
+    <div class="container">
+        <div class="section-title">落地场景 · 规模化验证</div>
+        <div style="margin-bottom: 2.5rem;">
+            <h3 style="text-align:center; margin-bottom: 1.2rem; font-size: clamp(1.2rem, 4vw, 1.5rem);"><i class="fas fa-globe-asia"></i> 核心应用区域</h3>
+            <div class="scene-grid">
+                <div class="scene-item">🏞️ 苏州阳澄湖大闸蟹养殖区</div>
+                <div class="scene-item">❄️ 新疆北屯（阿勒泰）冰川雪水养殖区</div>
+                <div class="scene-item">🏜️ 巴楚县沙漠边缘养殖塘</div>
+                <div class="scene-item">🌾 和田地区特色水产基地</div>
+            </div>
+        </div>
+        <div>
+            <h3 style="text-align:center; margin-bottom: 1.5rem; font-size: clamp(1.2rem, 4vw, 1.5rem);"><i class="fas fa-building"></i> 标杆落地案例</h3>
+            <div class="case-wrapper">
+                <div class="case-card"><i class="fas fa-tractor" style="font-size:2rem; color:#1A6F66;"></i><h4 style="margin: 0.8rem 0;">苏州湖强农业科技</h4><p>阳澄湖核心示范区，部署水下机器人+母舰系统，养殖效率提升35%</p></div>
+                <div class="case-card"><i class="fas fa-snowplow" style="font-size:2rem; color:#1A6F66;"></i><h4 style="margin: 0.8rem 0;">新疆海川兴农</h4><p>阿勒泰冰川雪水养殖，低温高浊环境稳定运行，病害预警准确率92%</p></div>
+                <div class="case-card"><i class="fas fa-water" style="font-size:2rem; color:#1A6F66;"></i><h4 style="margin: 0.8rem 0;">沙漠边缘养殖塘</h4><p>巴楚县与和田地区，AI精准投喂方案节水20%，成活率提升18%</p></div>
+            </div>
+            <div class="scene-grid" style="margin-top: 2rem;">
+                <div class="scene-item">✅ 浅水养殖塘</div>
+                <div class="scene-item">✅ 浑浊冷水域</div>
+                <div class="scene-item">✅ 大水面规模化养殖基地</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 产品图片设计图展示（由于没有实际图片，模拟展示设计图区域） -->
+<section id="gallery" style="background: #EFFAF8;">
+    <div class="container">
+        <div class="section-title">产品设计概念图</div>
+        <div class="gallery">
+            <div class="gallery-card">
+                <div class="mock-img" style="padding:0; overflow:hidden;">
+                    <img src="images/image001.png" alt="水下潜艇实拍" style="width:100%; height:100%; object-fit:cover; border-radius:20px;">
+                </div>
+                <p>核心产品</p>
+            </div>
+            <div class="gallery-card">
+                <div class="mock-img" style="padding:0; overflow:hidden;">
+                    <img src="images/image002.png" alt="水下潜艇实拍" style="width:100%; height:100%; object-fit:cover; border-radius:20px;">
+                </div>
+                <p>产品参数规格</p>
+            </div>
+            <div class="gallery-card">
+                <div class="mock-img" style="padding:0; overflow:hidden;">
+                    <img src="images/image003.png" alt="水下潜艇实拍" style="width:100%; height:100%; object-fit:cover; border-radius:20px;">
+                </div>
+                <p>机器人+智慧养殖闭环</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem;">※ 实际产品设计图详见项目资料集，以上为概念示意</p>
+    </div>
+</section>
+
+<!-- 团队信息联系方式 -->
+<section id="team" class="team-contact">
+    <div class="container" style="padding: 3rem 0;">
+        <div class="contact-flex">
+            <div>
+                <h2 style="font-size: clamp(1.6rem, 5vw, 2rem); margin-bottom: 0.8rem;"><i class="fas fa-users"></i> 创新团队</h2>
+                <p style="opacity: 0.9;">核心成员来自水下机器人、AI视觉与水产养殖交叉领域，具备深厚科研与产业积累。<br>拥有蟹类养殖相关专利10+项，论文40余篇支撑核心技术，专利第一发明人均为团队骨干。</p>
+            </div>
+            <div class="contact-info">
+                <p><i class="fas fa-user-circle contact-icon"></i> 项目负责人：刘享明</p>
+                <p><i class="fas fa-phone-alt contact-icon"></i> 联系电话：18115432119</p>
+                <div style="margin-top: 1rem;">
+                    <span style="background: #E6B422; padding: 0.3rem 1rem; border-radius: 30px; color:#0A2F2A; font-weight: bold; display: inline-block;">2026中国大学生计算机设计大赛 · 投其所好</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2026 投其所好 | 国内首个大闸蟹智慧监测水下机器人系统 | 三级立体组网 全链闭环AI决策</p>
+        <p style="margin-top: 0.5rem;"><i class="fas fa-crab"></i> 智养好蟹 · 科技兴农  |  数据驱动精准养殖未来</p>
+    </div>
+</footer>
+
+<!-- 简单的平滑滚动 + 移动端触摸优化 -->
+<script>
+    (function() {
+        // 平滑滚动，同时处理hash和按钮
+        const smoothScroll = (targetElement) => {
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        };
+        // 所有导航链接
+        const navLinks = document.querySelectorAll('.nav-links a, .btn-outline-light');
+        navLinks.forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#') && href !== '#') {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        smoothScroll(target);
+                    }
+                }
+            });
+        });
+        // 额外保证联系团队跳转
+        const contactBtn = document.querySelector('.btn-outline-light');
+        if(contactBtn && !contactBtn.hasAttribute('data-listener')) {
+            // 防止重复绑定
+            contactBtn.setAttribute('data-listener', 'true');
+            contactBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const teamSection = document.getElementById('team');
+                if(teamSection) teamSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+    })();
+</script>
+</body>
+</html>
